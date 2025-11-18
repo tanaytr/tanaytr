@@ -11,11 +11,10 @@
 
   <br/><br/>
 
-  <!-- GitHub Skyline (using 2024 for instant buildings) -->
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://skyline.github.com/tanaytr/2024?background=0d1117">
-    <img src="https://skyline.github.com/tanaytr/2024" alt="GitHub Skyline 2024" width="100%" style="max-width:900px;border-radius:16px;box-shadow:0 20px 40px rgba(0,255,150,0.3);"/>
-  </picture>
+ <!-- 2025 Skyline – guaranteed working version -->
+<a href="https://skyline.github.com/tanaytr/2025">
+  <img src="https://github.com/tanaytr/tanaytr/assets/108237679/024be2f1-8c4e-4e67-9236-f5c2fc5c91f9" alt="Tanay's 2025 GitHub Skyline" width="100%" style="max-width:950px;border-radius:16px;box-shadow:0 20px 50px rgba(0,255,150,0.4);"/>
+</a>
 
   <br/><br/>
 
