@@ -1,9 +1,9 @@
-name: Generate 2025 Skyline
+name: Generate 2025 Skyline SVG
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Daily
-  workflow_dispatch:    # Manual
+    - cron: '0 0 * * *'  # Daily at midnight UTC
+  workflow_dispatch:    # Manual trigger
 
 jobs:
   skyline:
@@ -12,21 +12,27 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Download skyline SVG
+      - name: Install GitHub CLI
         run: |
-          curl -s -o skyline-2025.svg "https://skyline.github.com/tanaytr/2025"
-          # If curl fails (404), create a fallback empty city
-          if [ $? -ne 0 ]; then
-            echo '<svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="20" fill="#0d1117"/><text x="50" y="12" fill="#00ff9d" text-anchor="middle" font-size="12">Skyline loading... Commit more for buildings! 🏙️</text></svg>' > skyline-2025.svg
-          fi
+          sudo apt update
+          sudo apt install -y gh  # GitHub CLI
 
-      - name: Commit to skyline branch
+      - name: Install gh-skyline extension
+        run: gh extension install github/gh-skyline
+
+      - name: Generate 2025 Skyline SVG
+        run: |
+          gh skyline generate --year=2025 --output=skyline-2025.svg --svg
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit SVG to skyline-2025 branch
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: update 2025 skyline SVG ✨"
+          commit_message: "chore: update 2025 skyline SVG 🏙️"
           branch: skyline-2025
           create_branch: true
           file_pattern: skyline-2025.svg
