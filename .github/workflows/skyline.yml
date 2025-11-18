@@ -39,14 +39,13 @@ jobs:
       
       - name: Generate 2025 3D Skyline STL
         run: |
-          # Generate STL file for current year (2025)
-          gh skyline --year 2025 --output tanaytr-2025-github-skyline.stl
+          # Explicitly specify the username (YOUR GitHub username)
+          gh skyline tanaytr --year 2025 --output tanaytr-2025-github-skyline.stl
           
           # Verify file was created
           if [ ! -f "tanaytr-2025-github-skyline.stl" ]; then
-            echo "⚠️ STL file not generated. This might be due to insufficient contribution data."
-            echo "Trying with 2024 data as fallback..."
-            gh skyline --year 2024 --output tanaytr-2025-github-skyline.stl || true
+            echo "⚠️ STL file not generated for 2025. Trying 2024 as fallback..."
+            gh skyline tanaytr --year 2024 --output tanaytr-2025-github-skyline.stl || true
           fi
           
           # Final check
@@ -54,7 +53,10 @@ jobs:
             echo "✅ Successfully generated skyline STL file"
             ls -lh tanaytr-2025-github-skyline.stl
           else
-            echo "❌ Failed to generate skyline. Check if you have enough contributions."
+            echo "❌ Failed to generate skyline. This may be due to:"
+            echo "   - Insufficient contribution data for 2024/2025"
+            echo "   - API rate limits"
+            echo "Try running manually: gh skyline tanaytr --year 2024"
             exit 1
           fi
       
