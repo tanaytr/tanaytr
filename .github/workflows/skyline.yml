@@ -28,36 +28,40 @@ jobs:
             && sudo apt install gh -y
       
       - name: Authenticate GitHub CLI
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+          echo "${{ secrets.GITHUB_TOKEN }}" > token.txt
+          gh auth login --with-token < token.txt
+          rm token.txt
       
       - name: Install gh-skyline extension
         run: |
-          gh extension install github/gh-skyline || true
+          gh extension install github/gh-skyline || echo "Extension may already be installed"
       
       - name: Generate 2025 3D Skyline STL
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Generate STL file for current year (2025)
           gh skyline --year 2025 --output tanaytr-2025-github-skyline.stl
           
           # Verify file was created
           if [ ! -f "tanaytr-2025-github-skyline.stl" ]; then
-            echo "⚠️ STL file not generated. Creating placeholder..."
-            # Create a minimal STL placeholder (optional fallback)
-            echo "STL file generation failed" > skyline-error.log
-          else
-            echo "✅ Successfully generated: tanaytr-2025-github-skyline.stl"
+            echo "⚠️ STL file not generated. This might be due to insufficient contribution data."
+            echo "Trying with 2024 data as fallback..."
+            gh skyline --year 2024 --output tanaytr-2025-github-skyline.stl || true
+          fi
+          
+          # Final check
+          if [ -f "tanaytr-2025-github-skyline.stl" ]; then
+            echo "✅ Successfully generated skyline STL file"
             ls -lh tanaytr-2025-github-skyline.stl
+          else
+            echo "❌ Failed to generate skyline. Check if you have enough contributions."
+            exit 1
           fi
       
       - name: Commit and push skyline to main branch
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "🏙️ Auto-update 2025 GitHub Skyline City"
-          file_pattern: "tanaytr-2025-github-skyline.stl skyline-error.log"
+          file_pattern: "tanaytr-2025-github-skyline.stl"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
