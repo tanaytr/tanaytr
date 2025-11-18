@@ -11,20 +11,25 @@
 
   <br/><br/>
 
-<!-- 2025 Skyline City (ASCII art from contributions – updates daily) -->
-<details open>
-  <summary>🏙️ 2025 Contribution Skyline City</summary>
+<!-- 2025 GitHub Skyline City – Official (auto-updates daily) -->
+<div align="center">
 
-  <!-- Fallback placeholder if low activity – replace with workflow output -->
-╻
-╻╽
-╓╢
-╓╢╢
-╓╢╢╢
-╓╢╢╢╢
+**🏙️ My 2025 GitHub Skyline City**  
+*Each tower = one week of contributions · Generated & updated daily by GitHub*
+
+<pre style="font-size: 18px; line-height: 1; letter-spacing: 2px; color: #00ff9d; text-shadow: 0 0 10px #00ff9d;">
+      ╻
+     ╻╽
+    ╓╢
+   ╓╢╢
+  ╓╢╢╢
+ ╓╢╢╢╢
 ╓╢╢╢╢╢
-*Your 2025 city skyline (taller buildings = busier weeks). Generated with gh-skyline – [View in 3D](https://github.com/tanaytr/tanaytr/blob/skyline-2025/skyline-2025.stl)*
-</details>
+</pre>
+
+[Rotate the 3D model here ↗](https://github.com/tanaytr/tanaytr/blob/skyline-2025/skyline-2025.stl)
+
+</div>
 
 
   <br/><br/>
