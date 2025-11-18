@@ -25,21 +25,22 @@ jobs:
             && sudo apt install gh -y
       
       - name: Authenticate GitHub CLI with PAT
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           echo "${{ secrets.GH_PAT }}" > token.txt
           gh auth login --with-token < token.txt
           rm token.txt
+          echo "Authentication successful"
           gh auth status
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
       
       - name: Install gh-skyline extension
         run: |
           gh extension install github/gh-skyline || echo "Extension may already be installed"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
       
       - name: Generate 2025 3D Skyline STL
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           # Generate skyline for your username
           gh skyline tanaytr --year 2025 --output tanaytr-2025-github-skyline.stl
@@ -58,6 +59,8 @@ jobs:
             echo "❌ Failed to generate skyline"
             exit 1
           fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
       
       - name: Commit and push skyline to main branch
         uses: stefanzweifel/git-auto-commit-action@v5
