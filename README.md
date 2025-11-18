@@ -11,9 +11,8 @@
 
   <br/><br/>
 
-<!-- 2025 Skyline – Custom generated SVG (always loads) -->
+<!-- 2025 Skyline – Official gh-skyline SVG (3D city from commits) -->
 <img src="https://raw.githubusercontent.com/tanaytr/tanaytr/skyline-2025/skyline-2025.svg" alt="tanaytr's 2025 GitHub Skyline" width="100%" style="max-width:950px; border-radius:16px; box-shadow:0 20px 50px rgba(0,255,150,0.4);"/>
-
   <br/><br/>
 
   <!-- Stats cards -->
