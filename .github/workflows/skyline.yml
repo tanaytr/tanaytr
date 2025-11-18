@@ -4,9 +4,6 @@ on:
   schedule:
     - cron: '0 0 * * *'  # Daily at midnight UTC
   workflow_dispatch:      # Allow manual trigger
-  push:
-    branches:
-      - main              # Run on push to main for immediate update
 
 jobs:
   generate-skyline:
@@ -27,36 +24,38 @@ jobs:
             && sudo apt update \
             && sudo apt install gh -y
       
-      - name: Authenticate GitHub CLI
+      - name: Authenticate GitHub CLI with PAT
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" > token.txt
+          echo "${{ secrets.GH_PAT }}" > token.txt
           gh auth login --with-token < token.txt
           rm token.txt
+          gh auth status
       
       - name: Install gh-skyline extension
         run: |
           gh extension install github/gh-skyline || echo "Extension may already be installed"
       
       - name: Generate 2025 3D Skyline STL
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          # Explicitly specify the username (YOUR GitHub username)
+          # Generate skyline for your username
           gh skyline tanaytr --year 2025 --output tanaytr-2025-github-skyline.stl
           
           # Verify file was created
           if [ ! -f "tanaytr-2025-github-skyline.stl" ]; then
-            echo "⚠️ STL file not generated for 2025. Trying 2024 as fallback..."
+            echo "⚠️ 2025 data insufficient. Trying 2024..."
             gh skyline tanaytr --year 2024 --output tanaytr-2025-github-skyline.stl || true
           fi
           
           # Final check
           if [ -f "tanaytr-2025-github-skyline.stl" ]; then
-            echo "✅ Successfully generated skyline STL file"
+            echo "✅ Successfully generated skyline!"
             ls -lh tanaytr-2025-github-skyline.stl
           else
-            echo "❌ Failed to generate skyline. This may be due to:"
-            echo "   - Insufficient contribution data for 2024/2025"
-            echo "   - API rate limits"
-            echo "Try running manually: gh skyline tanaytr --year 2024"
+            echo "❌ Failed to generate skyline"
             exit 1
           fi
       
