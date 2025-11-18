@@ -1,0 +1,26 @@
+name: Update 2025 Skyline
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * *'  # every day at midnight UTC
+  workflow_dispatch:
+
+jobs:
+  skyline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Generate 2025 Skyline
+        uses: JasonEtco/skyline-github-action@v1
+        with:
+          year: 2025
+          
+      - name: Commit & Push Skyline
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update 2025 skyline ✨"
+          branch: skyline-2025
+          create_branch: true
+          file_pattern: skyline-2025.svg
