@@ -1,51 +1,63 @@
-name: Generate 2025 Skyline City
+name: Generate 2025 GitHub Skyline City
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Daily at midnight UTC (auto-updates forever)
-  workflow_dispatch:    # Manual trigger for now
+    - cron: '0 0 * * *'  # Daily at midnight UTC
+  workflow_dispatch:      # Allow manual trigger
+  push:
+    branches:
+      - main              # Run on push to main for immediate update
 
 jobs:
-  generate:
+  generate-skyline:
     runs-on: ubuntu-latest
     permissions:
-      contents: write     # To commit files
-
+      contents: write     # Required to commit files
+    
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
-
+      
       - name: Install GitHub CLI
         run: |
           type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
           curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-            && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+            && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
             && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
             && sudo apt update \
             && sudo apt install gh -y
-
-      - name: Install gh-skyline extension
-        run: gh extension install github/gh-skyline
-
-      - name: Generate 2025 skyline (ASCII art + STL)
+      
+      - name: Authenticate GitHub CLI
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Authenticate CLI non-interactively
-          gh config set -h github.com token ${{ secrets.GITHUB_TOKEN }}
-          # Generate ASCII art (for README embed) and STL (for 3D link)
-          gh skyline generate --year=2025 --art-only --output skyline-2025-ascii.txt
-          gh skyline generate --year=2025 --output skyline-2025.stl
-
-      - name: Commit to skyline branch (with fallback placeholder)
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+      
+      - name: Install gh-skyline extension
+        run: |
+          gh extension install github/gh-skyline || true
+      
+      - name: Generate 2025 3D Skyline STL
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Generate STL file for current year (2025)
+          gh skyline --year 2025 --output tanaytr-2025-github-skyline.stl
+          
+          # Verify file was created
+          if [ ! -f "tanaytr-2025-github-skyline.stl" ]; then
+            echo "⚠️ STL file not generated. Creating placeholder..."
+            # Create a minimal STL placeholder (optional fallback)
+            echo "STL file generation failed" > skyline-error.log
+          else
+            echo "✅ Successfully generated: tanaytr-2025-github-skyline.stl"
+            ls -lh tanaytr-2025-github-skyline.stl
+          fi
+      
+      - name: Commit and push skyline to main branch
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: update 2025 skyline city 🏙️"
-          branch: skyline-2025
-          create_branch: true
-          file_pattern: |
-            skyline-2025-ascii.txt
-            skyline-2025.stl
-        env:
-          # Fallback: If no output (low activity), create placeholder
-          CI: true
+          commit_message: "🏙️ Auto-update 2025 GitHub Skyline City"
+          file_pattern: "tanaytr-2025-github-skyline.stl skyline-error.log"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
