@@ -1,0 +1,32 @@
+name: Update 2025 Skyline
+
+on:
+  schedule:
+    - cron: '0 0 * * *'      # Every day at midnight UTC
+  workflow_dispatch:         # Allows manual trigger
+
+jobs:
+  generate-skyline:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write         # Needed to push to branch
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate GitHub Skyline for 2025
+        uses: platane/snk/svg-only@v3
+        with:
+          github_user_name: tanaytr
+          outputs: |
+            dist/skyline-2025.svg?color_snake=00ff9d&color_dots=#0d1117, #010409, #0d1117, #0d1117, #00ff9d
+
+      - name: Deploy to skyline-2025 branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: skyline-2025
+          force_orphan: true
+          commit_message: "chore: update 2025 skyline ✨"
