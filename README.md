@@ -11,8 +11,11 @@
 
   <br/><br/>
 
-  <!-- 2025 Skyline – raw SVG, auto-updates daily via workflow -->
-<img src="https://raw.githubusercontent.com/tanaytr/tanaytr/skyline-2025/skyline-2025.svg" alt="tanaytr's 2025 GitHub Skyline" width="100%" style="max-width:950px; border-radius:16px; box-shadow:0 20px 50px rgba(0,255,150,0.4);"/>
+ <!-- 2025 Skyline – Official GitHub Generator (3D city from your commits) -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://skyline.github.com/tanaytr/2025?background=0d1117&theme=dark">
+  <img src="https://skyline.github.com/tanaytr/2025" alt="tanaytr's 2025 GitHub Skyline" width="100%" style="max-width:950px; border-radius:16px; box-shadow:0 20px 50px rgba(0,255,150,0.4);"/>
+</picture>
 
   <br/><br/>
 
