@@ -11,8 +11,22 @@
 
   <br/><br/>
 
-<!-- 2025 Skyline – Official gh-skyline SVG (3D city from commits) -->
-<img src="https://raw.githubusercontent.com/tanaytr/tanaytr/skyline-2025/skyline-2025.svg" alt="tanaytr's 2025 GitHub Skyline" width="100%" style="max-width:950px; border-radius:16px; box-shadow:0 20px 50px rgba(0,255,150,0.4);"/>
+<!-- 2025 Skyline City (ASCII art from contributions – updates daily) -->
+<details open>
+  <summary>🏙️ 2025 Contribution Skyline City</summary>
+
+  <!-- Fallback placeholder if low activity – replace with workflow output -->
+╻
+╻╽
+╓╢
+╓╢╢
+╓╢╢╢
+╓╢╢╢╢
+╓╢╢╢╢╢
+*Your 2025 city skyline (taller buildings = busier weeks). Generated with gh-skyline – [View in 3D](https://github.com/tanaytr/tanaytr/blob/skyline-2025/skyline-2025.stl)*
+</details>
+
+
   <br/><br/>
 
   <!-- Stats cards -->
