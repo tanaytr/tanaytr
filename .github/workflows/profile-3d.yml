@@ -1,9 +1,9 @@
 name: GitHub-Profile-3D-Contrib
 
 on:
-  schedule: # Runs at 18:00 UTC every day
-    - cron: "0 18 * * *"
-  workflow_dispatch:
+  schedule:
+    - cron: "0 18 * * *" # Runs daily at 6 PM UTC
+  workflow_dispatch: # Allows you to run it manually to test
 
 jobs:
   build:
@@ -20,5 +20,5 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add -A .
-          git commit -m "generated"
+          git commit -m "Generated 3D Skyline"
           git push
