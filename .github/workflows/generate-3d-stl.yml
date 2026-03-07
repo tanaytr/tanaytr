@@ -1,0 +1,28 @@
+name: Generate Interactive 3D STL
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs every midnight
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Generate Skyline STL
+        uses: jasonlong/gh-skyline@main # Uses the CLI logic to create the file
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          user: tanaytr
+          year: 2025
+      - name: Commit STL
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          mv skyline.stl tanaytr-2025-skyline.stl
+          git add tanaytr-2025-skyline.stl
+          git commit -m "Update 3D Skyline STL" || echo "No changes"
+          git push
