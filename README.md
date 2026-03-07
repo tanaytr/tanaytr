@@ -6,17 +6,17 @@
   <br/><br/>
 
    <div align="center">
-  <h2>🏙️ My GitHub Contribution Skyline (Interactive 3D)</h2>
-  <p><em>Rotate, zoom, and explore my 2025 contributions in full 3D glory</em></p>
-  
-  <a href="https://github.com/tanaytr/tanaytr/blob/main/tanaytr-2025-skyline.stl">
-    <img src="./profile-3d-contrib/profile-night-rainbow.svg" width="800" alt="Click to view interactive 3D Skyline" />
-  </a>
+  <h2>🏙️ My GitHub Contribution Skyline (Interactive 3D)</h2>
+  <p><em>Rotate, zoom, and explore my 2025 contributions in full 3D glory</em></p>
+  
+  <a href="https://github.com/tanaytr/tanaytr/blob/main/tanaytr-2025-skyline.stl">
+    <img src="./profile-3d-contrib/profile-night-rainbow.svg" width="800" alt="Click to view interactive 3D Skyline" />
+  </a>
 
-  <p>
-    <sub>🎯 <strong>Action:</strong> Click the skyline above to open the <strong>Live 3D Viewer</strong></sub><br/>
-    <sub>💡 Auto-updates daily · Right-click + drag to pan · Scroll to zoom</sub>
-  </p>
+  <p>
+    <sub>🎯 <strong>Action:</strong> Click the skyline above to open the <strong>Live 3D Viewer</strong></sub><br/>
+    <sub>💡 Auto-updates daily · Right-click + drag to pan · Scroll to zoom</sub>
+  </p>
 </div>
   
   <br/><br/>
@@ -29,7 +29,7 @@
     <img src="https://github-profile-trophy.vercel.app/?username=tanaytr&theme=tokyonight&no-frame=true&no-bg=true&margin-w=15&row=1" alt="trophies"/>
   <br/><br/>
   
-    <img src="https://github.com/tanaytr/tanaytr/blob/output/github-contribution-grid-snake-dark.svg" alt="snake" width="100%"/>
+    <img src="https://raw.githubusercontent.com/tanaytr/tanaytr/output/github-contribution-grid-snake-dark.svg" alt="snake" width="100%"/>
   <br/><br/>
   
     <img src="https://skillicons.dev/icons?i=js,ts,react,nextjs,tailwind,nodejs,express,prisma,postgres,supabase,docker,aws,git,github,figma,vscode&perline=9&theme=dark" alt="skills"/>
