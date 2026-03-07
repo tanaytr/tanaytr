@@ -5,19 +5,19 @@
     <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=35&pause=1000&color=00FF9D&center=true&vCenter=true&width=800&lines=Hey+I'm+@tanaytr;%F0%9F%94%AE+Full-Stack+Sorcerer;Busy+building+cool+sh*t;Open+source+%E2%9D%A4%EF%B8%8F+forever" alt="Typing SVG" />
   <br/><br/>
 
-   <h2>🏙️ My GitHub Contribution Skyline (Interactive 3D)</h2>
-<p><em>Click the image below to enter the interactive 3D viewer</em></p>
-
-<div align="center">
+   <div align="center">
+  <h2>🏙️ My GitHub Contribution Skyline (Interactive 3D)</h2>
+  <p><em>Rotate, zoom, and explore my 2025 contributions in full 3D glory</em></p>
+  
   <a href="https://github.com/tanaytr/tanaytr/blob/main/tanaytr-2025-skyline.stl">
-    <img src="./profile-3d-contrib/profile-night-rainbow.svg" width="800" alt="Click to view 3D Skyline">
+    <img src="./profile-3d-contrib/profile-night-rainbow.svg" width="800" alt="Click to view interactive 3D Skyline" />
   </a>
-</div>
 
-<p>
-  <sub>🎯 <strong>Interactive Mode:</strong> Click the graphic above to rotate, zoom, and explore.</sub><br/>
-  <sub>💡 Auto-updates daily via GitHub Actions</sub>
-</p>
+  <p>
+    <sub>🎯 <strong>Action:</strong> Click the skyline above to open the <strong>Live 3D Viewer</strong></sub><br/>
+    <sub>💡 Auto-updates daily · Right-click + drag to pan · Scroll to zoom</sub>
+  </p>
+</div>
   
   <br/><br/>
 
