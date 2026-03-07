@@ -8,7 +8,9 @@
     <h2>🏙️ My GitHub Contribution Skyline (Interactive 3D)</h2>
   <p><em>Rotate, zoom, and explore my 2025 contributions in full 3D glory</em></p>
   
-    ![](./profile-3d-contrib/profile-night-rainbow.svg)
+    <div align="center">
+  <img src="https://embed.github.com/view/3d/tanaytr/tanaytr/main/tanaytr-2025-skyline.stl?height=400&width=800" width="800" height="400">
+</div>
   
   <p>
     <sub>🎯 Each building = contributions per day · Auto-updates daily via GitHub Actions</sub><br/>
