@@ -1,25 +1,20 @@
-name: Generate Interactive 3D STL
-
-on:
-  schedule:
-    - cron: "0 18 * * *" # Runs daily at 6 PM UTC
-  workflow_dispatch: # Allows manual trigger
-
-permissions:
-  contents: write
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: generate-skyline
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Generate Skyline STL
+- name: Generate Skyline STL
         run: |
+          # 1. Install the extension
           gh extension install github/gh-skyline
-          # Explicitly naming the output file in the current directory
-          gh skyline --user tanaytr --year 2025 tanaytr-2025-skyline.stl
+          
+          # 2. Run the command and redirect output to the file
+          # We use --year 2025 as requested for your profile
+          gh skyline --user tanaytr --year 2025 > tanaytr-2025-skyline.stl
+          
+          # 3. Verify the file size (must be > 0 bytes)
+          if [ -s tanaytr-2025-skyline.stl ]; then
+            echo "Successfully generated tanaytr-2025-skyline.stl"
+            ls -lh tanaytr-2025-skyline.stl
+          else
+            echo "Error: Skyline file is empty or was not created."
+            exit 1
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -27,13 +22,6 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          
-          # Logic to check if file exists before attempting commit
-          if [ -f "tanaytr-2025-skyline.stl" ]; then
-            git add tanaytr-2025-skyline.stl
-            git commit -m "Update 3D Skyline STL"
-            git push
-          else
-            echo "Error: tanaytr-2025-skyline.stl not found!"
-            exit 1
-          fi
+          git add tanaytr-2025-skyline.stl
+          git commit -m "Update 3D Skyline STL" || echo "No changes to commit"
+          git push
