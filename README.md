@@ -29,7 +29,7 @@
     <img src="https://github-profile-trophy.vercel.app/?username=tanaytr&theme=tokyonight&no-frame=true&no-bg=true&margin-w=15&row=1" alt="trophies"/>
   <br/><br/>
   
-    <img src="https://raw.githubusercontent.com/tanaytr/tanaytr/output/github-contribution-grid-snake-dark.svg" alt="snake" width="100%"/>
+    <img src="https://github.com/tanaytr/tanaytr/blob/output/github-contribution-grid-snake-dark.svg" alt="snake" width="100%"/>
   <br/><br/>
   
     <img src="https://skillicons.dev/icons?i=js,ts,react,nextjs,tailwind,nodejs,express,prisma,postgres,supabase,docker,aws,git,github,figma,vscode&perline=9&theme=dark" alt="skills"/>
