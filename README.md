@@ -21,9 +21,9 @@
   
   <br/><br/>
 
-    <img src="https://github-readme-stats.vercel.app/api?username=tanaytr&show_icons=true&theme=react&hide_border=true&include_all_commits=true&count_private=true" alt="stats" height="195"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=tanaytr&show_icons=true&theme=react&hide_border=true" alt="stats" height="195"/>
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=tanaytr&theme=react&hide_border=true" alt="streak" height="195"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=tanaytr&theme=react&hide_border=true&layout=compact&langs_count=8" alt="langs" height="195"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=tanaytr&theme=react&hide_border=true&layout=compact" alt="langs" height="195"/>
   <br/><br/>
   
     <img src="https://github-profile-trophy.vercel.app/?username=tanaytr&theme=tokyonight&no-frame=true&no-bg=true&margin-w=15&row=1" alt="trophies"/>
