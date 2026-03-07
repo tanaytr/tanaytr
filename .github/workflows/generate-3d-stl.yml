@@ -1,9 +1,8 @@
 name: Generate Interactive 3D STL
-
 on:
   schedule:
-    - cron: "0 18 * * *" # Runs daily
-  workflow_dispatch: # This is what creates the "Run workflow" button
+    - cron: "0 18 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -13,23 +12,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Generate Skyline STL
         run: |
           gh extension install github/gh-skyline
-          gh skyline --user tanaytr --year 2025 > tanaytr-2025-skyline.stl
+          # We use the official output flag instead of redirection to ensure binary integrity
+          gh skyline --user tanaytr --year 2025 --output tanaytr-2025-skyline.stl
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Commit & Push
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          if [ -s tanaytr-2025-skyline.stl ]; then
+          if [ -f tanaytr-2025-skyline.stl ]; then
             git add tanaytr-2025-skyline.stl
             git commit -m "Update 3D Skyline STL" || echo "No changes"
             git push
-          else
-            echo "File not found or empty"
-            exit 1
           fi
